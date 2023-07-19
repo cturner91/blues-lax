@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title></title>
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+
+    {% include "partials/header.html" %}
+
+    <div class='container text-justify mt-5'>
+      <h1 class='text-center'>Find us</h1>
+
+      <div class='row mb-5'>
+        <div class='col-12 my-3 text-center'>
+          <p>We train and play match (both men's and women's) at the same ground.</p>
+          <p>Our address is: <br><b>Carshalton Road, Woodmansterne, SM7 3HU</b></p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d159362.16179675426!2d-0.2826913592829598!3d51.384057236002754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4875fd414f9f9dfb%3A0xf441483a16bbc714!2sWalcountians%20Sports%20Club!5e0!3m2!1sen!2suk!4v1653507136676!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          style="width: 400px; max-width: 100%; height: 400px; border:1px solid black; border-radius: 15px; margin: 10px;"
+          ></iframe>
+        </div>
+
+        <div class='col-12 my-3 text-justify'>
+          <h2 class='text-center'>By Train</h2>
+          <p>We recommend people travel to either Coulsdon Town or Coulsdon South train stations. A lot of our players drive and are happy to give lifts from the station to/from the pitches.</p>
+          <p>Coulsdon South/Town are only a couple of stops from East Croydon (or Purley). It couldn't be easier!</p>
+        </div>
+
+        <div class='col-12 my-3'>
+          <h2 class='text-center'>By Car</h2>
+          <p>Putting the postcode into any SatNav / maps app seems to work pretty well. Our only recommendation is that if you are driving from the south, it is much easier to drive via Woodmansterne Lane / Little Woodcote Ln / Woodcote Grove Rd, than to go through Chipstead (which may be maps' default).</p>
+          <p>There is ample parking at the ground.</p>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m33!1m12!1m3!1d19944.943518568834!2d-0.17048029302789136!3d51.32735051147906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m18!3e0!4m4!1s0x4875fda7da23b1d5%3A0x1659daf5657423a!3m2!1d51.315773199999995!2d-0.1379233!4m5!1s0x4875fd7ad1d19cf3%3A0x855e947389f6c226!2sLittle%20Woodcote%20Ln%2C%20Purley!3m2!1d51.3388918!2d-0.1468129!4m5!1s0x4875fd40d21425bf%3A0x6ffc8a0179f4634c!2sBanstead%20SM7%203HU!3m2!1d51.328866999999995!2d-0.16878369999999998!5e0!3m2!1sen!2suk!4v1653847010539!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          style="width: 400px; max-width: 100%; height: 400px; border:1px solid black; border-radius: 15px; margin: auto; display: block;"
+          ></iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+    {% include "partials/share.html" %}
+
+
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

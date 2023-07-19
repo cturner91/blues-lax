@@ -1,0 +1,122 @@
+<style>
+  div.footer {
+    position: relative;
+    border-top: 1px solid black;
+  }
+  div.footer-link {
+    position: relative;
+    left: 50px;
+    font-size: 20px;
+    padding: 10px;
+  }
+  div.footer-link i {
+    width: 50px;
+  }
+  div.footer-link a:hover {
+    text-decoration: none;
+  }
+</style>
+
+<div class='footer pb-3 px-2 pt-5'>
+  <div class='text-center px-4'>
+    <h2 style='font-size: 23px;'><b>Walcountian Blues Lacrosse Club</b></h2>
+    <p>*The* premier lacrosse club for players of all abilities in south London.</p>
+  </div>
+
+  <div class='row'>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/'>
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/team-info/'>
+        <i class="fa-solid fa-circle-info"></i>
+        <span>Team Info</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/player-profiles/'>
+        <i class="fa-solid fa-people-group"></i>
+        <span>Player Profiles</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/fixtures-results/'>
+        <i class="fa-solid fa-table"></i>
+        <span>Fixtures / Results</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/articles/'>
+        <i class="fa-solid fa-newspaper"></i>
+        <span>Articles</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/contact/'>
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>Contact</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/find-us/'>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Find Us</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/bluesfest/'>
+        {% comment %} <i class="fa-solid fa-lacrosse-stick-ball"></i> {% endcomment %}
+        <i class="fa-solid fa-campground"></i>
+        <span>Bluesfest!</span>
+      </a>
+    </div>
+
+    <div class='col-12 col-md-4 footer-link'>
+      <a href='{{BASE_URL}}/gallery/'>
+        <i class="fa-solid fa-image"></i>
+        <span>Gallery</span>
+      </a>
+    </div>
+
+    {% if user.is_superuser %}
+      <div class='col-12 col-md-4 footer-link'>
+        <a href='{{BASE_URL}}/attendance/'>
+          <i class=""></i>
+          <span>Record Attendance</span>
+        </a>
+      </div>
+
+
+      <div class='col-12 col-md-4 footer-link'>
+        <a href='{{BASE_URL}}/pregame-templates/'>
+          <i class=""></i>
+          <span>Pre-Game Templates</span>
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+
+  
+  <span style='margin-top: 40px; padding: 10px 20px 10px 20px; display: block; text-align: center;'>&copy; All content copyright Walcountian Blues lacrosse club 2022. All rights reserved.</span>
+  
+  <span style='display: block; text-align: center;'>  
+    <a href='{{BASE_URL}}/privacy-policy/'>
+      Privacy Policy
+    </a>
+  </span>
+  
+  <span style='margin-top: 30px; font-size: 12px; padding: 10px 20px 10px 20px; display: block; text-align: center;'>Website designed, developed and maintained by <a href='https://www.ctsoftware.co.uk'>www.ctsoftware.co.uk</a>.</span>
+  
+</div>

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="Articles published by Walcountian Blues lacrosse club" />
+    <title>Walcountian Blues Lacrosse Club - Articles</title>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <div class='container text-justify'>
+      <h1 style='text-align: center; font-weight: bold;'>Privacy Policy</h1>
+      <p>
+        This website uses no cookies, and no personal information is captured at any point. This website does use Google Analytics to capture some basic stats around usage. This is to understand how people like to use the website, and to understand how we can make their experience better. No personally identifiable information is captured at any point.
+      </p>
+      <p>
+        Any information that is provided to us for use on the website (e.g. info for player profiles) will require consent from the relevant person before it is published. If the relevant person wishes to revoke their consent, they can do so at any time and the relevant information will be deleted as soon as reasonably practical.
+      </p>
+      <p>
+        Requests to delete data / understand more about what data we (don't) capture can be made to <u><a href='mailto:c.turner.software@gmail.com'>c.turner.software@gmail.com</a></u>.
+      </p>
+      <p>
+        We encourage all visitors to be aware of their rights to privacy online. Some useful links are given below:
+        <ul>
+          <li><u><a href='https://ico.org.uk/your-data-matters/'>https://ico.org.uk/your-data-matters/</a></u></li>
+          <li><u><a href='https://www.gdpreu.org/'>https://www.gdpreu.org/</a></u></li>
+      </p>
+    </div>
+
+      
+    <div class='mt-5'></div>
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

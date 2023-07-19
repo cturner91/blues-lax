@@ -1,0 +1,25 @@
+
+
+<div class='col-12 col-md-6 px-3 my-3'>
+  
+  <span style='font-size: 18px; width: 180px;'>{{committee.role}} {% if committee.name %} - <b>{{committee.name}}</b> {% endif %}</span>
+  
+  <div class='contact-wrapper mt-1'>
+
+    {% if committee.email %}
+      <a href='mailto:{{committee.email}}'>
+        <i class="fa fa-envelope" style='font-size: 25px; padding: 0 10px 0 10px'></i>
+      </a>
+    {% endif %}
+
+    {% if committee.phone %}
+      <a href='https://api.whatsapp.com/send?phone={{committee.phone}}'>
+        <i class="fab fa-whatsapp" style='font-size: 25px; padding: 0 10px 0 10px'></i>
+      </a>
+      <a href='tel:{{committee.phone}}'>
+        <i class="fa-solid fa-phone" style='font-size: 25px; padding: 0 10px 0 10px'></i>
+      </a>
+    {% endif %}
+
+  </div>
+</div>

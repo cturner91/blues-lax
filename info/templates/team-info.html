@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="Team info for Walcountian Blues lacrosse club" />
+    <title>Blues Lax - Team Info</title>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <div class='container text-center'>
+
+      <h1 class='text-center'>Blues Team Info</h1>
+      <p class='text-center my-5'>All teams train on Tuesdays 7.30pm - 9.00pm at our <u><a href='{{BASE_URL}}/find-us/'>home pitch</a></u>.</p>
+
+      <style>
+        div.card-body {
+          color: black;
+          text-align: justify;
+        }
+        div.card-body h2 {
+          text-align: center;
+        }
+        div.card-body a {
+          color: black;
+        }
+
+        div.card-header button {
+          font-size: 25px;
+          text-align: center;
+          color: black;
+        }
+      </style>
+      <div class="accordion" id="team-info-accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Men's Team Info
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#team-info-accordion">
+            <div class="card-body">
+              <h2>SEMLA Premier Division</h2>
+              <p>Our men's team compete in the SEMLA Premier Division, the highest level of lacrosse in the south of England. the men's team is a blend of experienced senior players and youthful recent graduates. The men's team made it to the semi-finals of the Senior Flags competition in the 2021-22 season, losing to eventual winners Spencer.</p>
+              <p>The aim is for a top 3 finish in the 2022-23 season.</p>
+
+              <h2>Local League</h2>
+              <p>The men's team is also involved in the London Local League, division 2. These games are generally better-natured and a bit less competitive. Whether you're looking to push for silverware, or just looking for a runaround (and a pint after), you will have plenty of opportunities at Blues.</p>
+
+              <h2>Match Info</h2>
+              <p>Unless otherwise communicated, all men's games will be played on Saturdays with a 2pm face-off. Always aim to be at the venue at least an hour before face-off.</p>
+
+              <h2>Training Info</h2>
+              <p>The men's team train every week on <b>Tuesdays from 7.30pm-9.00pm</b>.</p>
+              <p>We recognise that this time may not be suitable for everyone, but attendance to training is required for selection in matches. Exceptions can be made for pre-existing arrangements that cannot be changed (e.g. work), but these are the <b>exceptions</b> and not the norm. Players who wish to be selected regularly need to be training regularly.</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Women's 1s
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#team-info-accordion">
+            <div class="card-body">
+              
+              <h2>Division 1</h2>
+              <p>The women's 1s are currently 🔥 <b>on fire</b> 🔥 having just recently been crowned National Champions! They won their league for the first time since 2007 and then defeated Stockport 24-3 in the National Championship game, making them <u><a href='https://www.facebook.com/englacrosse/photos/pcb.5265157330209346/5265157266876019/'>#NattyChamps</a></u>.</p>
+              <p>The women's 1s team is made up of a number of England internationals and a group of similarly motivated and talented players. If you're confident with a stick in your hand, and happy to bring those pozzy-vibes on gameday, then we would love to hear from you!</p>
+
+              <h2>Match Info</h2>
+              <p>Unless otherwise communicated, all women's 1s games will be played on Sundays with an 11am draw. Always aim to be at the venue at least an hour before the draw.</p>
+
+              <h2>Training Info</h2>
+              <p>The women's 1s train every week on <b>Tuesdays from 7.30pm-9.00pm</b>.</p>
+              <p>We recognise that this time may not be suitable for everyone, but attendance to training is required for selection in matches. Exceptions can be made for pre-existing arrangements that cannot be changed (e.g. work), but these are the <b>exceptions</b> and not the norm. Players who wish to be selected regularly need to be training regularly.</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Women's 2s
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#team-info-accordion">
+            <div class="card-body">
+
+              <h2>About</h2>
+              <p>You would think that as the women's 1s are so successful, that the 2s would be more a social team. But you would think <b>wrong</b>. Our women's 2s are also reigning <u><a href='https://www.facebook.com/englacrosse/photos/pcb.5264401103618302/5264401050284974/'>#NattyChamps</a></u>, beating Bristol Bombers in the Division 1 Championship game 16-5.</p>
+
+              <p style='text-align: center; font-size: 30px;'>🔥 🔥 🔥</p>
+
+              <p>There is always room on our 2s team for anybody who wants to develop their skills. Whether you're a new starter, or an experienced player who prefers to help lead on the pitch and develop others, we can promise gametime at an appropriate level on our women's 2s team.</p>
+
+              <h2>Training Info</h2>
+              <p>The women's 2s train every week on <b>Tuesdays from 7.30pm-9.00pm</b>.</p>
+              <p>Players wishing to be selected regularly for the women's 2s team should be looking to train regularly. However, we recognise that people may have pre-existing commitments that cannot be changed (e.g. work). Each player who wants to play but cannot make training will be treated on a individual basis.</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+
+    <script>
+      
+      $("#search-articles").on("input", filter_articles)
+
+      function toggle_checkbox(cb_name) {
+        const cb = $(`#${cb_name}`)
+        if (cb.is(':checked')) { cb.attr('checked',false) } else { cb.attr('checked',true) }
+
+        filter_articles()
+      }
+
+      $("#cb-mens-container").on("click", ()=>{ toggle_checkbox("cb-mens") })
+      $("#cb-womens-container").on("click", ()=>{ toggle_checkbox("cb-womens") })
+      $("#cb-general-container").on("click", ()=>{ toggle_checkbox("cb-general") })
+
+      function filter_articles() {
+
+        // get all filters
+        const search_text = $('#search-articles').val().toLowerCase()
+        const cb_mens     = $('#cb-mens').is(':checked')
+        const cb_womens   = $('#cb-womens').is(':checked')
+        const cb_general  = $('#cb-general').is(':checked')
+        // console.log('filtering', search_text)
+
+        const articles = $('a.article-link')
+        for (let i=0; i< articles.length; i++) {
+
+          const type = $(articles[i]).attr('type').toLowerCase()
+          const title = $(articles[i]).find('span.article-title').text().toLowerCase()
+          const preview = $(articles[i]).find('p.article-preview').text().toLowerCase()
+
+          let show_text=false, show_type = false
+          if (search_text.length===0) { show_text = true }
+          else if (search_text.length > 0 && 
+            (title.indexOf(search_text) >= 0 || preview.indexOf(search_text) >= 0 )
+          ) { show_text = true }
+
+          if ( 
+               (cb_mens && type=='men\'s match')
+            || (cb_womens && type=='women\'s match')
+            || (cb_general && type=='general')
+          ) {
+            show_type = true
+          }
+
+          if (show_text && show_type) { $(articles[i]).show() } else { $(articles[i]).hide() }
+
+          // console.log(type, title, preview, search_text, cb_mens, cb_womens, cb_general, show_text, show_type)
+        }
+
+      }
+    </script>
+
+  </body>
+</html>

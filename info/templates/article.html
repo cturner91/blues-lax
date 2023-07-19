@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="{{article.preview}}" />
+    <title>{{article.title}} - Blues Lax Article</title>
+
+    <style>
+      span.datestr {
+        text-align: right;
+        display: block;
+      }
+      h1.title {
+        text-align: center;
+      }
+      p.result {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      table.table {
+        background-color: white;
+        width: 90%;
+      }
+      table.table td {
+        vertical-align: middle;
+      }
+      p.article-para {
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <div class='container'>
+
+      <span class='datestr'>{{article.datestr}}</span>
+      <h1 class='title'>{{article.title}}</h1>
+      {{article.result|safe}}
+
+      {% for para in paras %}
+        <p class='article-para'>{{para|safe}}</p>
+      {% endfor %}
+
+      {{article.referee_para|safe}}
+
+      
+      {% if is_match %} 
+        {% if goals or assists or moms or dods %}
+          <h2 class='text-center mt-4'>Points</h2>
+          <div class='row'>
+
+            {% if goals %}
+              <div class='col-12 col-md-6 text-center m-auto my-3'>
+                <table class='table table-sm table-hover table-striped'>
+                  <thead>
+                    <tr><th>Player</th><th>Goals</th></tr>
+                  </thead>
+                  <tbody>
+                    {% for goal in goals %}
+                      <tr><td>{{goal.player}}</td><td>{{goal.goals}}</td></tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            {% endif %}
+
+            {% if assists %}
+            <div class='col-12 col-md-6 text-center m-auto my-3'>
+              <table class='table table-sm table-hover table-striped'>
+                <thead>
+                  <tr><th>Player</th><th>Assists</th></tr>
+                </thead>
+                <tbody>
+                  {% for assist in assists %}
+                    <tr><td>{{assist.player}}</td><td>{{assist.assists}}</td></tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% endif %}
+
+
+            {% if moms %}
+            <div class='col-12 col-md-6 text-center m-auto my-3'>
+              <table class='table table-sm table-hover table-striped'>
+                <thead>
+                  <tr><th>Player</th><th>MoM votes</th><th>Reason</th></tr>
+                </thead>
+                <tbody>
+                  {% for mom in moms %}
+                    <tr><td>{{mom.player}}</td><td>{{mom.mom_votes}}</td><td>{{mom.mom_reason}}</td></tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% endif %}
+
+            {% if dods %}
+            <div class='col-12 col-md-6 text-center m-auto my-3'>
+              <table class='table table-sm table-hover table-striped'>
+                <thead>
+                  <tr><th>Player</th><th>DoD votes</th><th>Reason</th></tr>
+                </thead>
+                <tbody>
+                  {% for dod in dods %}
+                    <tr><td>{{dod.player}}</td><td>{{dod.dod_votes}}</td><td>{{dod.dod_reason}}</td></tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% endif %}
+
+          </div>
+        {% endif %}
+      {% endif %}
+
+    </div>
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

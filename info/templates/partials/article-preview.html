@@ -1,0 +1,12 @@
+<a class='article-link' href='{{BASE_URL}}/articles/{{article.id}}/' type='{{article.type}}'>
+  <div class='article'>
+    <div class='d-flex flex-column justify-content-between'>
+      <div class='d-flex flex-row justify-content-between' style='font-size: 12px;'>
+        <span class='article-type'>{{article.type}}</span>
+        <span class='article-date'>{{article.datestr}}</span>
+      </div>
+      <span class='article-title'>{{article.title}}</span>
+    </div>
+    <p class='article-preview'>{{article.preview|safe}}</p>
+  </div>
+</a>

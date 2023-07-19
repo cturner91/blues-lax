@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title></title>
+
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+
+    {% include "partials/header.html" %}
+
+
+    <div class='container text-center my-5 d-flex flex-column align-items-center'>
+      <h1>Select Team</h1>
+
+      <a href='{{BASE_URL}}/fixtures-results/mens/'>
+        <button class='btn btn-lg btn-light my-3' style='width: 300px'>
+          Mens
+        </button>
+      </a>
+
+      <a href='{{BASE_URL}}/fixtures-results/womens1/'>
+        <button class='btn btn-lg btn-light my-3' style='width: 300px'>
+          Womens 1s
+        </button>
+      </a>
+
+      <a href='{{BASE_URL}}/fixtures-results/womens2/'>
+        <button class='btn btn-lg btn-light my-3'style='width: 300px'>
+          Womens 2s
+        </button>
+      </a>
+
+    </div>
+
+    {% include "partials/share.html" %}
+
+
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

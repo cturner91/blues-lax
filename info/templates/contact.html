@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title></title>
+
+    <style>
+      div.contact-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 300px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+
+    {% include "partials/header.html" %}
+
+    <div class='container text-center mt-5'>
+      <h1 class='text-center'>Contact details for Blues Committee</h1>
+
+      <h2 class='text-center mt-5'>General, non-urgent enquiries</h2>
+      <a href='mailto:info@blueslacrosse.com'>
+        <i style='font-size: 30px;' class="fa fa-envelope"></i>
+      </a>
+
+      <div class='row my-4'>
+        {% for committee in committees %}
+          {% include "partials/contact-personal.html" with committee=committee %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% include "partials/share.html" %}
+
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

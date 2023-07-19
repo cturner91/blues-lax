@@ -1,0 +1,13 @@
+*.pyc
+__pycache__
+manage.py
+*.DS_Store
+secrets.py
+
+# remove pictures, purely for space reasons.
+*.jpeg
+*.jpg
+*.png
+*.webp
+
+# keep the DB, it's only small and makes it easier to revert if necessary

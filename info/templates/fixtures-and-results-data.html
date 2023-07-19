@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title></title>
+
+    <style>
+      caption {
+        caption-side: top;
+      }
+      span.caption-text {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        display: block;
+      }
+      table {
+        margin: auto;
+      }
+      table thead,tbody {
+        background-color: white;
+        color: black;
+      }
+      table.table td,th {
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      {% comment %} hide extra columns on smaller screens {% endcomment %}
+      @media only screen and (max-width: 530px) {
+        table tr th:nth-of-type(12) {display: none; width: 0;}
+        table tr td:nth-of-type(12) {display: none; width: 0;}
+      }
+      @media only screen and (max-width: 460px) {
+        table tr th:nth-of-type(10) {display: none; width: 0;}
+        table tr td:nth-of-type(10) {display: none; width: 0;}
+
+        table tr th:nth-of-type(9) {display: none; width: 0;}
+        table tr td:nth-of-type(9) {display: none; width: 0;}
+      }
+      @media only screen and (max-width: 370px) {
+        table tr th:nth-of-type(8) {display: none; width: 0;}
+        table tr td:nth-of-type(8) {display: none; width: 0;}
+
+        table tr th:nth-of-type(7) {display: none; width: 0;}
+        table tr td:nth-of-type(7) {display: none; width: 0;}
+      }
+    </style>
+
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+
+    {% include "partials/header.html" %}
+
+
+    <div class='container text-justify my-5'>
+
+      <h2 class='text-center mt-3'>Upcoming Fixtures</h2>
+
+      {% if fixtures %}
+      <table class='table table-hover table-striped table-sm'>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Opponent</th>
+            <th>Competition</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fixture in fixtures %}
+            <tr>
+              <td>{{fixture.datestr}}</td>
+              <td>{{fixture.opposition}}</td>
+              <td>{{fixture.competition}}</td>
+              <td>{{fixture.location}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p>No fixtures to show just yet. Maybe check again later.</p>
+      {% endif %}
+
+
+      <h2 class='text-center mt-3'>Recent Results</h2>
+      {% if results %}
+      <table class='table table-hover table-striped table-sm'>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Opponent</th>
+            <th>Competition</th>
+            <th>Venue</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for result in results %}
+            <tr>
+              <td>{{result.datestr}}</td>
+              <td>{{result.opposition}}</td>
+              <td>{{result.competition}}</td>
+              <td>{{result.location}}</td>
+              <td>{{result.report.goals_for}} - {{result.report.goals_against}}
+                {% if result.report.goals_for > result.report.goals_against %} Win
+                {% elif result.report.goals_for < result.report.goals_against %} Loss
+                {% else %} Draw{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        <p>No results to show just yet. Maybe check again later.</p>
+      {% endif %}
+
+
+      {% if team == "mens" %}
+        <h2 class='text-center mt-5'>League Tables</h2>
+        <p style='margin-bottom: 0;'>Note: these tables are generated automatically via the <u><a href='https://www.southlacrosse.org.uk/api/semla/v1/teams/Walcountian+Blues'>SEMLA API</a></u>. If the SEMLA webmasters are reading this - excellent work! You saved me a lot of time <span style='font-size: 20px;'>😅</span></p>
+        <p>We maintain our own fixtures and results lists, so the league table may not reflect the latest scores just yet.</p>
+
+        <div id="league-tables"></div>
+        <script data-target="league-tables" src="https://www.southlacrosse.org.uk/api/semla/v1/teams/Walcountian+Blues/tables.js?async" async></script>
+
+        <script>
+          let need_to_update = true
+          setInterval(()=>{
+            if (need_to_update) {
+              const tables = $('table')
+              if (tables.length!==0) {
+                need_to_update = false
+                $(tables).addClass('table table-sm table-bordered table-hover table-striped')
+              }  
+            }
+          }, 100)
+        </script>
+      
+      {% elif team == "womens1" %}
+        <div class='w-100 text-center'>
+          <a href='http://southeastlacrosse.pitchero.com/competitions-314/south-east-womens-lacrosse-lea-premiership-4045192/'>
+            <button class='btn btn-lg btn-light'>
+              Link to League Table
+            </button>
+          </a>
+        </div>
+      {% elif team == "womens2" %}
+        <div class='w-100 text-center'>
+          <a href='http://southeastlacrosse.pitchero.com/competitions-314/south-east-womens-lacrosse-lea-division-1-4045193/'>
+            <button class='btn btn-lg btn-light d-block m-auto'>
+              Link to League Table
+            </button>
+          </a>
+        </div>
+      {% endif %}
+
+    </div>
+
+    {% include "partials/share.html" %}
+
+
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

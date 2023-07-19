@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <title>404</title>
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+    {% include "partials/header.html" %}
+
+    <div class='container'>
+      <h1 style='text-align: center;'>404 - Page Not Found</h1>
+      <p>I'm not totally sure how you got here... Did you manually type the URL and maybe make a mistake?</p>
+      <p>Go back? Or use one of the links to find where you wanted to go.</p>
+    </div>
+
+    <div class='mt-5'></div>
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

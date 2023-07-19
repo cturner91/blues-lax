@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="Articles published by Walcountian Blues lacrosse club" />
+    <title>Walcountian Blues Lacrosse Club - Articles</title>
+  </head>
+  <body>
+
+    {% include 'partials/sidenav.html' %}
+
+    {% include "partials/header.html" %}
+
+    <div class='container'>
+      <h1 style='text-align: center; font-weight: bold;'>All Articles</h1>
+
+      {% comment %} Search/filter {% endcomment %}
+      <style>
+        input[type="checkbox"] {
+          accent-color: grey;
+        }
+      </style>
+      <div class='w-100 d-flex flex-column'>
+        <input id='search-articles' class='form-control mt-3' placeholder='Search articles' />
+
+        <div class='row mt-3'>
+          <div id='cb-mens-container' class='col-12 col-sm-6 col-lg-3 d-flex flex-row align-items-center'>
+            <input id='cb-mens' type='checkbox' class='mx-3 my-2' checked>
+            <span>Men's Matches</span>
+          </div>
+          <div id='cb-womens1-container' class='col-12 col-sm-6 col-lg-3 d-flex flex-row align-items-center'>
+            <input id='cb-womens1' type='checkbox' class='mx-3 my-2' checked>
+            <span>Women's 1s Matches</span>
+          </div>
+          <div id='cb-womens2-container' class='col-12 col-sm-6 col-lg-3 d-flex flex-row align-items-center'>
+            <input id='cb-womens2' type='checkbox' class='mx-3 my-2' checked>
+            <span>Women's 2s Matches</span>
+          </div>
+          <div id='cb-general-container' class='col-12 col-sm-6 col-lg-3 d-flex flex-row align-items-center'>
+            <input id='cb-general' type='checkbox' class='mx-3 my-2' checked>
+            <span>General</span>
+          </div>
+        </div>
+      </div>
+
+      {% comment %} list of articles {% endcomment %}
+      <div class='my-3 text-center'>
+        <span id='number-articles'>-</span>
+      </div>
+      {% include "partials/article-preview-styles.html" %}
+      {% for article in articles %}
+        {% include "partials/article-preview.html" with article=article %}
+      {% endfor %}
+
+
+    </div>
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+
+    <script>
+      
+      $("#search-articles").on("input", filter_articles)
+
+      function toggle_checkbox(cb_name) {
+        const cb = $(`#${cb_name}`)
+        if (cb.is(':checked')) { cb.attr('checked',false) } else { cb.attr('checked',true) }
+
+        filter_articles()
+      }
+
+      $("#cb-mens-container").on("click", ()=>{ toggle_checkbox("cb-mens") })
+      $("#cb-womens1-container").on("click", ()=>{ toggle_checkbox("cb-womens1") })
+      $("#cb-womens2-container").on("click", ()=>{ toggle_checkbox("cb-womens2") })
+      $("#cb-general-container").on("click", ()=>{ toggle_checkbox("cb-general") })
+
+      function filter_articles() {
+
+        // get all filters
+        const search_text = $('#search-articles').val().toLowerCase()
+        const cb_mens     = $('#cb-mens').is(':checked')
+        const cb_womens1  = $('#cb-womens1').is(':checked')
+        const cb_womens2  = $('#cb-womens2').is(':checked')
+        const cb_general  = $('#cb-general').is(':checked')
+        // console.log('filtering', search_text)
+
+        const articles = $('a.article-link')
+        let count_shown = 0
+        for (let i=0; i< articles.length; i++) {
+
+          const type = $(articles[i]).attr('type').toLowerCase()
+          const title = $(articles[i]).find('span.article-title').text().toLowerCase()
+          const preview = $(articles[i]).find('p.article-preview').text().toLowerCase()
+
+          let show_text=false, show_type = false
+          if (search_text.length===0) { show_text = true }
+          else if (search_text.length > 0 && 
+            (title.indexOf(search_text) >= 0 || preview.indexOf(search_text) >= 0 )
+          ) { show_text = true }
+
+          if ( 
+               (cb_mens && type=='men\'s match')
+            || (cb_womens1 && type=='women\'s 1s match')
+            || (cb_womens2 && type=='women\'s 2s match')
+            || (cb_general && type=='general')
+          ) {
+            show_type = true
+          }
+
+          if (show_text && show_type) { 
+            $(articles[i]).show()
+            count_shown += 1
+          } else { $(articles[i]).hide() }
+
+          // console.log(type, title, preview, search_text, cb_mens, cb_womens, cb_general, show_text, show_type)
+        }
+
+        // update number of results
+        let text = ''
+        if (count_shown === 0) text = 'No articles match filters'
+        if (count_shown === 1) text = '1 article matches filters'
+        if (count_shown > 1) text = `${count_shown} articles match filters`
+        $('#number-articles').text(text)
+      }
+      filter_articles() // run on lod so it updates the number of articles
+    </script>
+
+  </body>
+</html>

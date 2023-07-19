@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="Blues Lax player profiles" />
+    <title>Blues Lax Player Profiles</title>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <div class='container'>
+      <h1 class='text-center'>Player Profiles</h1>
+      <p class='text-justify'>We're looking to grow the club, so we figured we would make it easier to recognise some of the friendly faces at our club through player profiles! Take a look and see if you recognise any of the names below.</p>
+
+      <div class='row mt-3'>
+        <div class='col-12 col-md-6 mt-4'>
+          <h2 class='text-center'>Men's players</h2>
+          {% if not players_mens %}
+            <p class='text-center'>No men's player profiles available.</p>
+          {% else %}
+            <div class='d-flex flex-row flex-wrap justify-content-around'>
+              {% for player in players_mens %}
+                <button class='btn btn-light m-1' style='width: 200px;' onclick='show_profile({{player.id}})'>
+                  {{player.name}}
+                </button>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+
+        <div class='col-12 col-md-6 mt-4'>
+          <h2 class='text-center'>Women's players</h2>
+          {% if not players_womens %}
+            <p class='text-center'>No women's player profiles available.</p>
+          {% else %}
+            <div class='d-flex flex-row flex-wrap justify-content-around'>
+              {% for player in players_womens %}
+                <a href='{{BASE_URL}}/player-profiles/{{player.id}}'>
+                  <button class='btn btn-light m-1' style='width: 200px;'>
+                    {{player.name}}
+                  </button>
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% comment %} the actual player profile {% endcomment %}
+    {% include "player-profile.html" %}
+
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

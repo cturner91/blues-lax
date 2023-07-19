@@ -1,0 +1,126 @@
+{% load static %}
+
+<style>
+.sidenav {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: -360px;
+  background-color: #1e73be;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 100px;
+  border-right: 2px solid black;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #f1f1f1;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #ccc;
+}
+
+.sidenav .sidenav-close {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidenav .sidenav-home {
+  position: absolute;
+  top: 8px;
+  left: 25px;
+  margin-right: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#fade-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  width: 0;
+  z-index: 15;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#sidenavToggler {
+  color: black; 
+  font-size: 30px; 
+  cursor: pointer; 
+  position: fixed; 
+  top: 10px; 
+  left: 10px; 
+  z-index: 10;
+
+  border-radius: 5px;
+  border: 2px solid black;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+}
+#sidenavToggler svg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 10px;
+  height: 30px;
+  left: 10px;
+  width: 30px;
+}
+#sidenavToggler svg line {
+  z-index: 11;
+}
+</style>
+
+<div id='fade-bg' onclick="closeNav()"></div>
+
+{% comment %} <span id='sidenavToggler' onclick="openNav()">&#9776;</span> {% endcomment %}
+<div id='sidenavToggler' onclick="openNav()">
+  <svg viewBox='0 0 100 100'>
+    <line x1='30' x2='70' y1='35' y2='35' style='stroke: black; stroke-width: 8; stroke-linecap: round;' />
+    <line x1='30' x2='70' y1='50' y2='50' style='stroke: black; stroke-width: 8; stroke-linecap: round;' />
+    <line x1='30' x2='70' y1='65' y2='65' style='stroke: black; stroke-width: 8; stroke-linecap: round;' />
+  </svg>
+</div>
+
+<div id="sidenav" class="sidenav">
+  <div class='d-flex flex-row justify-content-between'>
+    <a href="{{BASE_URL}}/" class='sidenav-home'><img style='width: 50px; height: 50px;' src="{% static 'blues-logo-white-500.png' %}" /></a>
+    <a href="javascript:void(0)" class="sidenav-close" onclick="closeNav()">&times;</a>
+  </div>
+  <a href="{{BASE_URL}}/">Home</a>
+  <a href="{{BASE_URL}}/team-info/">Team Info</a>
+  <a href="{{BASE_URL}}/player-profiles/">Player Profiles</a>
+  <a href="{{BASE_URL}}/fixtures-results/">Fixtures / Results</a>
+  <a href="{{BASE_URL}}/articles/">Articles</a>
+  <a href="{{BASE_URL}}/contact/">Contact</a>
+  <a href="{{BASE_URL}}/find-us/">Find us</a>
+  <a href="{{BASE_URL}}/bluesfest/">Bluesfest!</a>
+  <a href="{{BASE_URL}}/gallery/">Gallery</a>
+</div>
+
+<script>
+  function openNav() {
+    document.getElementById("sidenav").style.left = "0";
+    document.getElementById("fade-bg").style.width = "100vw";
+  }
+  function closeNav() {
+    document.getElementById("sidenav").style.left = "-360px";
+    document.getElementById("fade-bg").style.width = "0";
+  }
+</script>

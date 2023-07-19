@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title></title>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <div class='container text-center'>
+      <h1>Photo Gallery</h1>
+
+
+      <div class='d-flex flex-column align-items-center'>
+        <input id='search-photos' class='form-control mb-3' placeholder='Search photos' />
+        <p id='number-photos'>-</p>
+      </div>
+
+      <style>
+        img.photo {
+          display: block;
+          margin: auto;
+          margin-top: 30px;
+          {% comment %} margin-bottom: 10px; {% endcomment %}
+
+          width: auto;
+          height: auto;
+          max-width: 100%;
+          max-height: 400px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px lightblue;
+        }
+        p.caption {
+          font-size: 20px;
+        }
+        div.photo {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      </style>
+      <div class='d-flex flex-column align-items-center mt-3'>
+        {% if not photos %}
+          <p>No photos to show.</p>
+        {% else %}
+          {% for photo in photos %}
+          <div class='photo'>
+            <img src='{{photo.image.url}}' class='photo' alt='{{photo.caption}}' />
+            <p class='caption mt-2'>{{photo.caption}}</p>
+          </div>
+          {% endfor %}
+        {% endif %}
+
+      </div>
+
+    </div>
+
+
+
+    <script>
+      
+      $("#search-photos").on("input", filter_photos)
+      function filter_photos() {
+
+        // get all filters
+        const search_text = $('#search-photos').val().toLowerCase()
+
+        const photos =  $('div.photo')
+        let count_shown = 0
+        for (let i=0; i< photos.length; i++) {
+
+          const caption = $(photos[i]).find('p.caption').text().toLowerCase()
+
+          let show=false
+          if (search_text.length===0) { show = true }
+          else if (
+            search_text.length > 0 && caption.indexOf(search_text) >= 0
+          ) { show = true }
+
+          if (show) { 
+            $(photos[i]).show()
+            count_shown += 1
+          } else { $(photos[i]).hide() }
+
+          // console.log(type, title, preview, search_text, cb_mens, cb_womens, cb_general, show_text, show_type)
+        }
+
+        // update number of results
+        let text = ''
+        if (count_shown === 0) text = 'No photos'
+        if (count_shown === 1) text = '1 photo'
+        if (count_shown > 1) text = `${count_shown} photos`
+        $('#number-photos').text(text)
+      }
+      filter_photos() // run on lod so it updates the number of photos
+    </script>
+    
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>

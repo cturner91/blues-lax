@@ -1,0 +1,53 @@
+{% load static %}
+<style>
+  div.header {
+    width: 100%;
+    text-align: center;
+    background-color: white; 
+    border-bottom: 2px solid black;
+    font-size: 30px;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 20px;
+  }
+  div.header i {
+    font-size: 30px;
+  }
+  div.header img {
+    height: 30px;
+    width: auto;
+  }
+</style>
+<div style='padding-left: 50px; padding-right: 10px;' class='header d-flex flex-row justify-content-around'>
+  <a href='{{BASE_URL}}'>
+    <i class="fa-solid fa-house" style='color: black; font-size: 20px;'></i>
+  </a>
+
+  <a href='https://www.facebook.com/BluesLaxUK/'>
+    <i class="fa-brands fa-facebook-square" style='color: rgb(24, 119, 242);'></i>
+  </a>
+
+  <a href='https://twitter.com/blueslax?lang=en'>
+    <i class="fa-brands fa-twitter" style='color: rgb(29, 161, 242);'></i>
+  </a>
+
+  <a href='https://www.instagram.com/blueslax/?hl=en'>
+    <img src="{% static 'instagram-color.png' %}" />
+  </a>
+
+  <a href='https://www.southlacrosse.org.uk/fixtures?team=Walcountian+Blues'>
+    <img src="{% static 'semla-logo.png' %}" />
+  </a>
+
+  <a href='http://southeastlacrosse.pitchero.com/competitions-314/south-east-womens-lacrosse-lea-premiership-4045192/'
+    style='vertical-align: center;'
+  >
+    <span style='font-size: 10px; color: black;'>#NattyChamps</span>
+  </a>
+
+</div>
+
+

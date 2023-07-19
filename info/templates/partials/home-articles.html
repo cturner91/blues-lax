@@ -1,0 +1,23 @@
+
+{% include "partials/article-preview-styles.html" %}
+
+<div class='my-3 col-12 col-md-6 d-flex flex-column text-left'>
+  <h2 class='text-center'>Recent Articles</h2>
+  
+  {% if not articles %}
+    <h2>No articles to display</h2>
+  {% else %}
+    {% for article in articles %}
+      {% include "partials/article-preview.html" with article=article %}
+    {% endfor %}
+
+    <a href='{{BASE_URL}}/articles/' class='w-100 text-center mt-3'>
+      <button class='btn btn-light'>
+        View all articles
+      </button>
+    </a>
+
+  {% endif %}
+
+
+</div>

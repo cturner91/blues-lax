@@ -1,0 +1,205 @@
+{% load static %}
+<style>
+  #bg {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #player-profile {
+    border-radius: 10px;
+    background-color: white;
+    max-width: 90vw;
+    {% comment %} max-height: 400px; {% endcomment %}
+    box-shadow: 0 0 20px lightblue;
+    z-index: 35;
+    margin: auto;
+    margin-top: 60px;
+    {% comment %} transition: margin-top 1s ease-in-out; {% endcomment %}
+    position: relative;
+    padding: 15px;
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+
+    overflow: scroll;
+  }
+
+  #profile-pic-img {
+    display: block;
+    height: auto;
+    width: auto;
+    max-height: 200px;
+    box-shadow: 0 0 20px grey;
+    border-radius: 15px;    
+  }
+
+  table.table tr th {
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  table.table tr td {
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  #player-exit {
+    width: 30px;
+    height: 30px;
+    stroke: white;
+    font-size: 30px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+  }
+
+  p.about-para {
+    margin-bottom: 5px;
+  }
+</style>
+
+
+<div id='bg'>
+  <svg id='player-exit' viewBox="0 0 460.775 460.775" >
+    <path fill='white' stroke='black' stroke-width='20' d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55  c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55  c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505  c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55  l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719  c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z" />
+  </svg>
+
+  <div id='player-profile' onclick='stop_propagating()'>
+
+    <div id='profile-pic' class='d-flex flex-row justify-content-center p-3 w-100'>
+      <img src='' id='profile-pic-img' />
+    </div>
+
+    <table class='table table-striped table-sm'>
+      <tbody>
+        <tr id='player-name'     ><th>Name                </th><td style='text-align: center;'></td></tr>
+        <tr id='player-nickname' ><th>Nickname(s)         </th><td style='text-align: center;'></td></tr>
+        <tr id='player-age'      ><th>Age                 </th><td style='text-align: center;'></td></tr>
+        <tr id='player-position' ><th>Position            </th><td style='text-align: center;'></td></tr>
+        <tr id='player-started'  ><th>Started Playing     </th><td style='text-align: center;'></td></tr>
+        <tr id='player-about'    ><th>About Me            </th><td style='text-align: justify;'></td></tr>
+        <tr id='player-clubs'    ><th>Clubs played for    </th><td style='text-align: center;'></td></tr>
+        <tr id='player-favourite'><th>Favourite Lax moment</th><td style='text-align: center;'></td></tr>
+        <tr id='player-otol'     ><th>One Truth<br>One Lie</th><td style='text-align: justify;'></td></tr>
+      </tbody>
+    </table>
+
+    {% include "partials/share.html" %}
+  </div>  
+</div>
+
+<script src='{% static "jquery-easing.js" %}'></script>
+<script>
+  const BASE_URL = '{{BASE_URL}}'
+  const ANIMATION_DURATION = 800
+  const EASING = 'easeInOutBack'
+  const DEFAULT_PHOTO_URL = "{% static '/logo-blue-white.png' %}"
+  const DEFAULT_TITLE = window.title
+
+
+  function stop_propagating(e) {
+    event.stopPropagation()
+  }
+
+
+  function update_url(player) {
+    if (player) {
+      const html = document.documentElement.outerHTML
+      const title = player.name+" - Player Profile"
+      const url = BASE_URL+"/player-profiles/"+player.id
+      window.history.replaceState(html, title, url);
+    } else {
+      const html = document.documentElement.outerHTML
+      const title = DEFAULT_TITLE
+      const url = BASE_URL+"/player-profiles/"
+      window.history.replaceState(html, title, url);  
+    }
+  }
+
+
+  $('#bg').on('click', hide_profile)
+  function hide_profile() { 
+    $('#player-profile').animate({'margin-top': '110vh'}, ANIMATION_DURATION, EASING, ()=>$('#bg').hide())
+    update_url(null)
+  }
+
+  function show_profile(id) {
+    const url = BASE_URL+'/player-profiles-ajax/'+id
+    $.get(url)
+    .catch( e=>{
+      alert('Sorry, something went wrong!')
+      console.log(e)
+      return
+    })
+    .then( d=>{
+      // console.log(d)
+
+      // update player profile
+      if (d.player.image) {
+        $('#profile-pic-img').attr('src', `${d.player.image}` )
+      } else {
+        $('#profile-pic-img').attr('src', `${DEFAULT_PHOTO_URL}` )
+      }
+      $('#profile-pic-img').attr('alt', `${d.player.name}` )
+      $('#player-name').find('td').html(`${d.player.name}`)
+
+      // the one-truth-one-lie needs some formatting
+      let otol = ''
+      if(d.player.one_truth_one_lie) {
+        otol += '<ul>'
+        d.player.one_truth_one_lie.replaceAll('\r', '').split('\n').forEach( d2=>{
+          otol += `<li>${d2}</li>`
+        })
+        otol += '</ul>'  
+      }
+      let about = ''
+      d.player.about.split('\n').forEach( d2=>{
+        about += `<p class='about-para'>${d2}</p>`
+      })
+
+
+      const inputs = [
+        {ajax: d.player.nicknames, html: '#player-nickname'},
+        {ajax: d.player.age, html: '#player-age'},
+        {ajax: d.player.position, html: '#player-position'},
+        {ajax: d.player.started_playing, html: '#player-started'},
+        {ajax: about, html: '#player-about'},
+        {ajax: d.player.clubs_played_for, html: '#player-clubs'},
+        {ajax: d.player.favourite_lax_moment, html: '#player-favourite'},
+        {ajax: otol, html: '#player-otol'},
+      ].forEach( d2=>{
+        if (d2.ajax) {
+          $(d2.html).show()
+          $(d2.html).find('td').html(d2.ajax)
+        } else {
+          $(d2.html).hide()
+          $(d2.html).find('td').html('')
+        }
+      })
+
+
+      // show
+      $('#bg').show()
+      $('#player-profile').animate({'margin-top': '60px'}, ANIMATION_DURATION, EASING)
+
+      update_url(d.player)
+    })
+  }
+
+  // default for page = bg and profile hidden
+  $('#player-profile').animate({'margin-top': '110vh'}, 1, 'linear', ()=>$('#bg').hide())
+
+
+  // if window is loaded with an ID referred, then immediately load and show it
+  const id = Number(window.location.href.split('/').slice(-1)[0])
+  if (id) { show_profile(id) }
+
+
+</script>

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "partials/default-head.html" %}
+    <meta name="description" content="" />
+    <title>Bluesfest!</title>
+  </head>
+  <body>
+
+    {% comment %} sidenav {% endcomment %}
+    {% include 'partials/sidenav.html' %}
+
+    {% comment %} header {% endcomment %}
+    {% include "partials/header.html" %}
+
+    <style>
+      p.footnote {
+        font-size: 14px;
+        margin-bottom: 0;
+        text-align: justify;
+      }
+
+      table.table td {
+        vertical-align: middle;
+      }
+      table.table th {
+        vertical-align: middle;
+      }
+    </style>
+
+
+    <div class='container text-center'>
+      <h1>Bluesfest!</h1>
+      <h2>The greatest weekend of your year!</h2>
+      <p>Bluesfest is the annual <span style='text-decoration: line-through;'>drinking</span> lacrosse tournament held at Blues' home venue in June. <br>30 teams competing in 10-minute games over 2 days, and when it's all said and done (and Spencer have won), you can retire to the comfort of your tent that hasn't been used or washed since last year's Bluesfest.<p>
+        
+      <p style='margin-bottom:0;'>Get ready for some great weather<sup>*</sup> to enjoy some great lacrosse<sup>**</sup> and enjoy Blues players' great hosting<sup>***</sup> at the home of SEMLA's greatest club<sup>****</sup>.</p>
+      <p class='footnote'><sup>*</sup> Great weather not guaranteed.</p>
+      <p class='footnote'><sup>**</sup> Great lacrosse not guaranteed.</p>
+      <p class='footnote'><sup>***</sup> Great hosting not guaranteed (and is frankly unlikely).</p>
+      <p class='footnote'><sup>****</sup> Greatest club title is beyond dispute.</p>
+
+      <h2 class='mt-5'>Bluesfest 2022 Details</h2>
+
+      <table class='table table-hover table-striped table-bordered' style='background-color: white;'>
+        <tbody>
+          <tr><th>Where?</th><td>Blues home ground - SM7 3HU</td></tr>
+          <tr><th>When?</th><td>Friday June 10<sup>th</sup> - Sunday June 12<sup>th</sup><br>Feel free to arrive from 7pm on Friday.</td></tr>
+          <tr><th>Saturday night theme?</th><td>Magic! <br><span style='font-size: 30px;'>🧙‍♀️ 🧙‍♂️</span></td></tr>
+        <tbody>
+      </table>
+
+
+      <style>
+        img.bluesfest-photo {
+          display: block;
+          margin: auto;
+          margin-top: 20px;
+          margin-bottom: 20px;
+
+          width: auto;
+          height: auto;
+          max-width: 400px;
+          max-height: 400px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px lightblue;
+        }
+      </style>
+      <div class='d-flex flex-column align-items-center mt-5'>
+        <img class='bluesfest-photo' src='{% static "bluesfest1.jpeg" %}'>
+        <img class='bluesfest-photo' src='{% static "bluesfest2.jpeg" %}'>
+        <img class='bluesfest-photo' src='{% static "bluesfest3.jpeg" %}'>
+        <img class='bluesfest-photo' src='{% static "bluesfest4.jpeg" %}'>
+      </div>
+
+    </div>
+
+    <div class='mt-5'></div>
+    {% include "partials/share.html" %}
+    {% include "partials/footer.html" %}
+
+  </body>
+</html>
